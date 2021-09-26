@@ -198,12 +198,13 @@ class _LoginState extends State<Login> {
             ),
           ),
           TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ))
+            text: 'Sign Up',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ]),
       ),
     );
@@ -212,59 +213,68 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
-      child: GestureDetector(
-        child: Stack(
-          children: <Widget>[
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0x665ac18e),
-                    Color(0x995ac18e),
-                    Color(0xcc5ac18e),
-                    Color(0xff5ac18e),
-                  ],
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+          child: Stack(
+            children: <Widget>[
+              // Center(
+              //   child: Container(
+              //     width: 400,
+              //     height: 400,
+              //     child: Image.asset('asset/images/Flutter.png',
+              //         width: 80, height: 80),
+              //   ),
+              // ),
+              Container(
+                height: double.infinity,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0x665ac18e),
+                      Color(0x995ac18e),
+                      Color(0xcc5ac18e),
+                      Color(0xff5ac18e),
+                    ],
+                  ),
                 ),
-              ),
-              child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 120,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Sign In',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 120,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Sign In',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 50),
-                    buildEmail(),
-                    SizedBox(height: 20),
-                    buildPassword(),
-                    buildForgotPasswordButton(),
-                    buildLoginButton(),
-                    buildRememberMe(),
-                    SizedBox(height: 20),
-                    buildSignUpButton(),
-                  ],
+                      SizedBox(height: 50),
+                      buildEmail(),
+                      SizedBox(height: 20),
+                      buildPassword(),
+                      buildForgotPasswordButton(),
+                      buildLoginButton(),
+                      buildRememberMe(),
+                      SizedBox(height: 20),
+                      buildSignUpButton(),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }

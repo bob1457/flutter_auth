@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/login.dart';
 
+import 'landing-page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      // home: Login(),
+      // home: MyHomePage(title: "Demo"),
+      home: LandingPage(),
     );
   }
 }
@@ -49,6 +53,17 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter--;
     });
   }
 
@@ -96,10 +111,23 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      floatingActionButton: Wrap(
+        spacing: 10.0,
+        children: <Widget>[
+          FloatingActionButton(
+            backgroundColor: Colors.green,
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          ),
+          // SizedBox(width: 10),
+          FloatingActionButton(
+            backgroundColor: Colors.orange,
+            onPressed: _decrementCounter,
+            tooltip: 'Decrement',
+            child: Icon(Icons.remove),
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
