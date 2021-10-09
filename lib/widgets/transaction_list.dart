@@ -5,22 +5,6 @@ import 'package:intl/intl.dart';
 class TransactionList extends StatelessWidget {
   // TransactionList({Key? key}) : super(key: key);
 
-  // final List<Transaction> _userTransactions = [
-  //   // Mock data
-  //   Transaction(
-  //     id: 't1',
-  //     title: 'New Shoes',
-  //     amount: 59.99,
-  //     date: DateTime.now(),
-  //   ),
-  //   Transaction(
-  //     id: 't2',
-  //     title: 'Book',
-  //     amount: 19.99,
-  //     date: DateTime.now(),
-  //   ),
-  // ];
-
   final List<Transaction> transactions;
 
   TransactionList(this.transactions);
@@ -29,16 +13,29 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 400,
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return _buildTransactionContent(index);
-        },
-        itemCount: transactions.length,
-      ),
+      child: transactions.isEmpty
+          ? Column(
+              children: [
+                SizedBox(height: 25),
+                Text(
+                  'No trnasactions at this time',
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+                Container(
+                    height: 100,
+                    child: Image.asset('asset/images/Flutter.png')),
+              ],
+            )
+          : ListView.builder(
+              itemBuilder: (context, index) {
+                return _buildTransactionContent(context, index);
+              },
+              itemCount: transactions.length,
+            ),
     );
   }
 
-  Widget _buildTransactionContent(int index) {
+  Widget _buildTransactionContent(BuildContext context, int index) {
     return Card(
       child: Row(
         children: [
@@ -50,7 +47,7 @@ class TransactionList extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,
-                color: Colors.black87,
+                color: Theme.of(context).primaryColorDark,
               ),
             ),
             padding: EdgeInsets.all(12),
@@ -59,7 +56,7 @@ class TransactionList extends StatelessWidget {
               '\$${transactions[index].amount.toStringAsFixed(2)}',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.purple,
+                color: Theme.of(context).primaryColor,
                 fontSize: 24,
               ),
             ),
@@ -70,10 +67,7 @@ class TransactionList extends StatelessWidget {
             children: [
               Text(
                 transactions[index].title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+                style: Theme.of(context).textTheme.headline1,
               ),
               SizedBox(
                 height: 15,

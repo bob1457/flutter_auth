@@ -29,6 +29,7 @@ class _AddTransactionState extends State<AddTransaction> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               TextField(
+                autofocus: true,
                 decoration: InputDecoration(
                   labelText: 'Title',
                 ),
