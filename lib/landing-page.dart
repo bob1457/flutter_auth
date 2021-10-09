@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/widgets/add_transaction.dart';
+import 'package:flutter_auth/widgets/chart.dart';
 import 'package:flutter_auth/widgets/transaction_list.dart';
 
 import 'models/transaction.dart';
@@ -60,6 +61,17 @@ class _LandingPageState extends State<LandingPage> {
     });
   }
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+    // return _userTransactions;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,13 +88,8 @@ class _LandingPageState extends State<LandingPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                child: Text('Expense chart'),
-                elevation: 5,
-              ),
-            ),
+            //
+            Chart(_recentTransactions),
             TransactionList(_userTransactions),
           ],
         ),
