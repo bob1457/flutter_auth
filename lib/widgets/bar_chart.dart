@@ -13,7 +13,14 @@ class BarChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('\$${spending.toStringAsFixed(0)}'),
+        Container(
+          height: 20,
+          child: FittedBox(
+            child: Text(
+              '\$${spending.toStringAsFixed(0)}',
+            ),
+          ),
+        ),
         SizedBox(height: 4),
         Container(
           height: 60,
@@ -36,8 +43,12 @@ class BarChart extends StatelessWidget {
             ),
           ]),
         ),
-        SizedBox(height: 4),
-        Text(label),
+        SizedBox(
+          height: 4,
+        ),
+        Text(
+          label,
+        ),
       ],
     );
   }

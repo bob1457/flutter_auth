@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/models/transaction.dart';
+import 'package:flutter_auth/widgets/bar_chart.dart';
 import 'package:intl/intl.dart';
 
 class Chart extends StatelessWidget {
@@ -9,7 +10,7 @@ class Chart extends StatelessWidget {
 
   Chart(this.recentTransactions);
 
-  List<Map<String, Object>> get groupTransactions {
+  List<Map<String, dynamic>> get groupTransactions {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
@@ -31,6 +32,12 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum,
       };
+    }).reversed.toList();
+  }
+
+  double get totalSpending {
+    return groupTransactions.fold(0.0, (sum, item) {
+      return sum + item['amount'];
     });
   }
 
@@ -40,11 +47,19 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 5,
       margin: EdgeInsets.all(20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: groupTransactions.map((data) {
-          return Text('${data['day']}" ${data['amount']}');
-        }).toList(),
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupTransactions.map((data) {
+            // return Text('${data['day']}" ${data['amount']}');
+            return Flexible(
+              fit: FlexFit.tight,
+              child: BarChart(data['day'] as String, data['amount'] as double,
+                  (data['amount'] as double) / totalSpending),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
