@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Expense Tracker',
       theme: ThemeData(
-          primarySwatch: Colors.indigo,
+          primaryColor: Colors.indigo,
+          errorColor: Colors.deepOrange,
           colorScheme:
               ColorScheme.fromSwatch().copyWith(secondary: Colors.amber),
           fontFamily: 'Quicksand',

@@ -49,12 +49,13 @@ class _LandingPageState extends State<LandingPage> {
     ),
   ];
 
-  void _addTransaction(String txTitle, double txAmount) {
+  void _addTransaction(String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
-        title: txTitle,
-        amount: txAmount,
-        id: DateTime.now().toString(),
-        date: DateTime.now());
+      title: txTitle,
+      amount: txAmount,
+      id: DateTime.now().toString(),
+      date: chosenDate,
+    );
 
     setState(() {
       _userTransactions.add(newTx);
@@ -70,6 +71,12 @@ class _LandingPageState extends State<LandingPage> {
       );
     }).toList();
     // return _userTransactions;
+  }
+
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
   }
 
   @override
@@ -90,7 +97,7 @@ class _LandingPageState extends State<LandingPage> {
           children: [
             //
             Chart(_recentTransactions),
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),
       ),

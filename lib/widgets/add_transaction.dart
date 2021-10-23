@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AddTransaction extends StatefulWidget {
   final Function addTransaction;
@@ -11,8 +12,24 @@ class AddTransaction extends StatefulWidget {
 
 class _AddTransactionState extends State<AddTransaction> {
   final titleInputController = TextEditingController();
-
   final amountInputController = TextEditingController();
+  DateTime? selectedDate;
+
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime.now(),
+    ).then((date) {
+      if (date == null) {
+        return;
+      }
+      setState(() {
+        selectedDate = date;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +59,40 @@ class _AddTransactionState extends State<AddTransaction> {
                 controller: amountInputController,
                 keyboardType: TextInputType.number,
               ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      selectedDate == null
+                          ? 'No date selected'
+                          : 'Picked date: ${DateFormat.yMd().format(selectedDate ?? DateTime.now())}',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  OutlinedButton(
+                    onPressed: _presentDatePicker,
+                    style: OutlinedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor,
+                    ),
+                    child: Text(
+                      'Select Date',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(height: 7),
-              TextButton(
+              ElevatedButton(
                 child: Text('Add Traansaction'),
                 style: TextButton.styleFrom(
                   textStyle: TextStyle(
                     fontSize: 20,
                   ),
-                  primary: Colors.purple,
+                  primary: Colors.white,
                   padding: EdgeInsets.all(10),
                   side: BorderSide(color: Colors.purpleAccent, width: 1),
                 ),
-                onPressed: submitData,
+                onPressed: _submitData,
               )
             ],
           ),
@@ -62,17 +101,22 @@ class _AddTransactionState extends State<AddTransaction> {
     );
   }
 
-  submitData() {
+  _submitData() {
+    if (amountInputController.text.isEmpty) {
+      return;
+    }
+
     final title = titleInputController.text;
     final amount = double.parse(amountInputController.text);
 
-    if (title.isEmpty || amount <= 0) {
+    if (title.isEmpty || amount <= 0 || selectedDate == null) {
       return;
     }
 
     widget.addTransaction(
       title,
       amount,
+      selectedDate,
     );
 
     Navigator.of(context).pop();
