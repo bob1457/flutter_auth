@@ -46,12 +46,14 @@ class _UserTransactionsState extends State<UserTransactions> {
     });
   }
 
+  // void _deleteTransaction() {}
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         AddTransaction(_addTransaction),
-        TransactionList(_userTransactions),
+        // TransactionList(_userTransactions, _deleteTransaction),
       ],
     );
   }

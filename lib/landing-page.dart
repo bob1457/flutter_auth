@@ -35,18 +35,18 @@ class _LandingPageState extends State<LandingPage> {
 
   final List<Transaction> _userTransactions = [
     // Mock data
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 59.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Book',
-      amount: 19.99,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'New Shoes',
+    //   amount: 59.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Book',
+    //   amount: 19.99,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   void _addTransaction(String txTitle, double txAmount, DateTime chosenDate) {
@@ -95,8 +95,10 @@ class _LandingPageState extends State<LandingPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            //
-            Chart(_recentTransactions),
+            _userTransactions.isEmpty
+                ? Text(
+                    'No Chart Data') // for enhancement, put an empty bar chart here
+                : Chart(_recentTransactions),
             TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),

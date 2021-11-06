@@ -24,6 +24,7 @@ class TransactionList extends StatelessWidget {
                 ),
                 Container(
                     height: 100,
+                    alignment: Alignment.center,
                     child: Image.asset('asset/images/Flutter.png')),
               ],
             )
