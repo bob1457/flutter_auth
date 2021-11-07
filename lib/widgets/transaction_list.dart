@@ -12,54 +12,50 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 400,
-      child: transactions.isEmpty
-          ? Column(
-              children: [
-                SizedBox(height: 25),
-                Text(
-                  'No trnasactions at this time',
-                  style: Theme.of(context).textTheme.headline1,
-                ),
-                Container(
-                    height: 100,
-                    alignment: Alignment.center,
-                    child: Image.asset('asset/images/Flutter.png')),
-              ],
-            )
-          : ListView.builder(
-              itemBuilder: (context, index) {
-                // return _buildTransactionContent(context, index);
-                return Card(
-                  elevation: 5,
-                  margin: EdgeInsets.all(8),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 30,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: FittedBox(
-                          child: Text('\$${transactions[index].amount}'),
-                        ),
+    return transactions.isEmpty
+        ? Column(
+            children: [
+              SizedBox(height: 25),
+              Text(
+                'No trnasactions at this time',
+                style: Theme.of(context).textTheme.headline1,
+              ),
+              Container(
+                  height: 100,
+                  alignment: Alignment.center,
+                  child: Image.asset('asset/images/Flutter.png')),
+            ],
+          )
+        : ListView.builder(
+            itemBuilder: (context, index) {
+              // return _buildTransactionContent(context, index);
+              return Card(
+                elevation: 5,
+                margin: EdgeInsets.all(8),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: FittedBox(
+                        child: Text('\$${transactions[index].amount}'),
                       ),
                     ),
-                    title: Text(transactions[index].title),
-                    subtitle: Text(
-                      DateFormat.yMMMMd().format(transactions[index].date),
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete),
-                      color: Theme.of(context).errorColor,
-                      onPressed: () =>
-                          deleteTransaction(transactions[index].id),
-                    ),
                   ),
-                );
-              },
-              itemCount: transactions.length,
-            ),
-    );
+                  title: Text(transactions[index].title),
+                  subtitle: Text(
+                    DateFormat.yMMMMd().format(transactions[index].date),
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    color: Theme.of(context).errorColor,
+                    onPressed: () => deleteTransaction(transactions[index].id),
+                  ),
+                ),
+              );
+            },
+            itemCount: transactions.length,
+          );
   }
 
   Widget _buildTransactionContent(BuildContext context, int index) {

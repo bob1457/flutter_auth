@@ -55,8 +55,14 @@ class Chart extends StatelessWidget {
             // return Text('${data['day']}" ${data['amount']}');
             return Flexible(
               fit: FlexFit.tight,
-              child: BarChart(data['day'] as String, data['amount'] as double,
-                  (data['amount'] as double) / totalSpending),
+              child: BarChart(
+                data['day'] as String,
+                data['amount'] as double,
+                // (data['amount'] as double) / totalSpending,
+                totalSpending == 0.00
+                    ? 0.0
+                    : (data['amount'] as double) / totalSpending,
+              ),
             );
           }).toList(),
         ),

@@ -81,25 +81,33 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text('Expense Tracker'),
+      backgroundColor: Theme.of(context).primaryColor,
+      actions: [
+        IconButton(
+          onPressed: () => _addNewTransaction(context),
+          icon: Icon(Icons.add),
+        ),
+      ],
+    );
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Expense Tracker'),
-        backgroundColor: Theme.of(context).primaryColor,
-        actions: [
-          IconButton(
-            onPressed: () => _addNewTransaction(context),
-            icon: Icon(Icons.add),
-          ),
-        ],
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _userTransactions.isEmpty
-                ? Text(
-                    'No Chart Data') // for enhancement, put an empty bar chart here
-                : Chart(_recentTransactions),
-            TransactionList(_userTransactions, _deleteTransaction),
+            //
+            Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.25,
+                child: Chart(_recentTransactions)),
+            Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height) *
+                    0.7,
+                child: TransactionList(_userTransactions, _deleteTransaction)),
           ],
         ),
       ),

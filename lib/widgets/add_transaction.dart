@@ -38,63 +38,70 @@ class _AddTransactionState extends State<AddTransaction> {
         vertical: 10,
         horizontal: 10,
       ),
-      child: Card(
-        elevation: 5,
-        child: Container(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              TextField(
-                autofocus: true,
-                decoration: InputDecoration(
-                  labelText: 'Title',
-                ),
-                controller: titleInputController,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Amount',
-                ),
-                controller: amountInputController,
-                keyboardType: TextInputType.number,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      selectedDate == null
-                          ? 'No date selected'
-                          : 'Picked date: ${DateFormat.yMd().format(selectedDate ?? DateTime.now())}',
-                      style: TextStyle(color: Colors.grey),
-                    ),
+      child: SingleChildScrollView(
+        child: Card(
+          elevation: 5,
+          child: Container(
+            padding: EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                TextField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    labelText: 'Title',
                   ),
-                  OutlinedButton(
-                    onPressed: _presentDatePicker,
-                    style: OutlinedButton.styleFrom(
-                      primary: Theme.of(context).primaryColor,
-                    ),
-                    child: Text(
-                      'Select Date',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 7),
-              ElevatedButton(
-                child: Text('Add Traansaction'),
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(
-                    fontSize: 20,
-                  ),
-                  primary: Colors.white,
-                  padding: EdgeInsets.all(10),
-                  side: BorderSide(color: Colors.purpleAccent, width: 1),
+                  controller: titleInputController,
                 ),
-                onPressed: _submitData,
-              )
-            ],
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Amount',
+                  ),
+                  controller: amountInputController,
+                  keyboardType: TextInputType.number,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        selectedDate == null
+                            ? 'No date selected'
+                            : 'Picked date: ${DateFormat.yMd().format(selectedDate ?? DateTime.now())}',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                    OutlinedButton(
+                      onPressed: _presentDatePicker,
+                      style: OutlinedButton.styleFrom(
+                        primary: Theme.of(context).primaryColor,
+                      ),
+                      child: Text(
+                        'Select Date',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 7),
+                ElevatedButton(
+                  child: Text('Add Traansaction'),
+                  style: TextButton.styleFrom(
+                    textStyle: TextStyle(
+                      fontSize: 20,
+                    ),
+                    primary: Colors.white,
+                    padding: EdgeInsets.all(10),
+                    side: BorderSide(color: Colors.purpleAccent, width: 1),
+                  ),
+                  onPressed: _submitData,
+                )
+              ],
+            ),
           ),
         ),
       ),
