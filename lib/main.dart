@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/login.dart';
+import 'package:flutter_auth/screens/category_screen.dart';
+
+import 'MealFonderHomePage.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,11 +14,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Auth',
+      title: 'Meal Fonder',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Login(),
+          // primarySwatch: Colors.purple,
+          colorScheme: ColorScheme.fromSwatch()
+              .copyWith(secondary: Colors.amber, primary: Colors.purple),
+          canvasColor: Color.fromRGBO(255, 254, 229, 1),
+          fontFamily: 'Raleway',
+          textTheme: ThemeData.light().textTheme.copyWith(
+              bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+              bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+              subtitle1: TextStyle(
+                fontFamily: 'RobotoCondensed',
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ))),
+      // home: Login(),
+      // home: MyHomePage(title: 'Meal Fonder'),
+      // home: MealFonderHomePage(title: 'Meal Fonder'),
+      home: CategoryScreen(),
     );
   }
 }
