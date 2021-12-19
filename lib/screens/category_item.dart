@@ -22,7 +22,7 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext ctx) {
     return InkWell(
-      // onTap: () => selectCategory(ctx),
+      onTap: () => selectCategory(ctx),
       // onTap: () => {
       //   Navigator.of(ctx).push(
       //     MaterialPageRoute(
