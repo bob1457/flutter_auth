@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/data/category_data.dart';
 import 'package:flutter_auth/screens/category_item.dart';
@@ -11,7 +10,7 @@ class CategoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Meal Fonder')),
       body: GridView(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         children: CATEGORIES
             .map((category) => CategoryItem(
                   category.title,

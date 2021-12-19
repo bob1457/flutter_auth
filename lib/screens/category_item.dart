@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'category_details.dart';
+
 class CategoryItem extends StatelessWidget {
   // const CategoryItem({Key? key}) : super(key: key);
   final String title;
@@ -7,21 +9,45 @@ class CategoryItem extends StatelessWidget {
 
   CategoryItem(this.title, this.color);
 
+  void selectCategory(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return CategoryDetails();
+        },
+      ),
+    );
+  }
+
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(15),
-      child: Text(title, style: Theme.of(context).textTheme.subtitle1),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            color.withOpacity(0.7),
-            color,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+  Widget build(BuildContext ctx) {
+    return InkWell(
+      // onTap: () => selectCategory(ctx),
+      // onTap: () => {
+      //   Navigator.of(ctx).push(
+      //     MaterialPageRoute(
+      //       builder: (ctx) {
+      //         return CategoryDetails();
+      //       },
+      //     ),
+      //   )
+      // },
+      splashColor: Theme.of(ctx).primaryColor,
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        padding: EdgeInsets.all(15),
+        child: Text(title, style: Theme.of(ctx).textTheme.subtitle1),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              color.withOpacity(0.7),
+              color,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(15),
         ),
-        borderRadius: BorderRadius.circular(15),
       ),
     );
   }
