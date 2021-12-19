@@ -15,6 +15,7 @@ class CategoryScreen extends StatelessWidget {
             .map((category) => CategoryItem(
                   category.title,
                   category.color,
+                  category.id,
                 ))
             .toList(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

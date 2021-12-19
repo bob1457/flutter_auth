@@ -6,14 +6,15 @@ class CategoryItem extends StatelessWidget {
   // const CategoryItem({Key? key}) : super(key: key);
   final String title;
   final Color color;
+  final String id;
 
-  CategoryItem(this.title, this.color);
+  CategoryItem(this.title, this.color, this.id);
 
   void selectCategory(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return CategoryDetails();
+          return CategoryDetails(id, title);
         },
       ),
     );
