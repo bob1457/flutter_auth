@@ -1,24 +1,33 @@
 import 'package:flutter/material.dart';
+import '../data/category_data.dart';
 
 class CategoryDetails extends StatelessWidget {
   // const CategoryDetails({Key? key}) : super(key: key);
 
-  final String categoryId;
-  final String categoryTitel;
+  // final String categoryId;
+  // final String categoryTitle;
 
-  CategoryDetails(this.categoryId, this.categoryTitel);
+  // CategoryDetails(this.categoryId, this.categoryTitle);
+  static const routeName = "/category-details";
 
   @override
   Widget build(BuildContext context) {
+    final routeArgs =
+        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    final categoryId = routeArgs['id'];
+    final categoryTitle = routeArgs['title'];
+
+    final mealsInCategory = MEALS.where((meal) {
+      return meal.categories.contains(categoryId);
+    }).toList();
+
     return Scaffold(
-      appBar: AppBar(title: Text(categoryTitel)),
-      body: Center(
-        child: Container(
-          child: Text(
-            'Category Details',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-        ),
+      appBar: AppBar(title: Text(categoryTitle != null ? categoryTitle : '')),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return Text(mealsInCategory[index].title);
+        },
+        itemCount: mealsInCategory.length,
       ),
     );
   }

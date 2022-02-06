@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/login.dart';
+import 'package:flutter_auth/screens/category_details.dart';
 import 'package:flutter_auth/screens/category_screen.dart';
 
 import 'MealFonderHomePage.dart';
@@ -32,7 +33,12 @@ class MyApp extends StatelessWidget {
       // home: Login(),
       // home: MyHomePage(title: 'Meal Fonder'),
       // home: MealFonderHomePage(title: 'Meal Fonder'),
-      home: CategoryScreen(),
+      // home: CategoryScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => CategoryScreen(),
+        CategoryDetails.routeName: (context) => CategoryDetails(),
+      },
     );
   }
 }

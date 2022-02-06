@@ -11,13 +11,19 @@ class CategoryItem extends StatelessWidget {
   CategoryItem(this.title, this.color, this.id);
 
   void selectCategory(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) {
-          return CategoryDetails(id, title);
-        },
-      ),
+    Navigator.of(context).pushNamed(
+      CategoryDetails.routeName,
+      arguments: {
+        'id': id,
+        'title': title,
+      },
     );
+    // MaterialPageRoute(
+    //   builder: (context) {
+    //     return CategoryDetails(id, title);
+    //   },
+    // ),
+    // );
   }
 
   @override
