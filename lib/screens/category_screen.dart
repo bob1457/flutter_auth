@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/data/category_data.dart';
-import 'package:flutter_auth/screens/category_item.dart';
+import 'package:flutter_auth/wodgets/category_item.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({Key? key}) : super(key: key);
