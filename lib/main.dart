@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/login.dart';
 import 'package:flutter_auth/screens/category_details.dart';
 import 'package:flutter_auth/screens/category_screen.dart';
-
-import 'MealFonderHomePage.dart';
+import 'package:flutter_auth/screens/meal_details_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,6 +36,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => CategoryScreen(),
         CategoryDetails.routeName: (context) => CategoryDetails(),
+        MeailDetaisScreen.routeName: (context) => MeailDetaisScreen(),
       },
     );
   }
