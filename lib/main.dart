@@ -38,6 +38,15 @@ class MyApp extends StatelessWidget {
         CategoryDetails.routeName: (context) => CategoryDetails(),
         MeailDetaisScreen.routeName: (context) => MeailDetaisScreen(),
       },
+      // onGenerateRoute: (settings) {
+      //   print(settings.arguments);
+      //   return MaterialPageRoute(builder: (context) => CategoryScreen());
+      // },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => CategoryScreen(),
+        );
+      },
     );
   }
 }
