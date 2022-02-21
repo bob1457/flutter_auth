@@ -74,7 +74,7 @@ class MeailDetaisScreen extends StatelessWidget {
 
   Container buildSectionContent(Widget child) {
     return Container(
-      height: 170,
+      height: 135,
       width: 300,
       padding: EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
