@@ -57,7 +57,8 @@ class MeailDetaisScreen extends StatelessWidget {
                       ),
                       title: Text(
                         selectedMeal.steps[index],
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],

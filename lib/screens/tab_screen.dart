@@ -24,12 +24,14 @@ class _TabsScreenState extends State<TabsScreen> {
               Tab(
                 icon: Icon(
                   Icons.category,
+                  color: Colors.amber,
                 ),
                 text: 'Categories',
               ),
               Tab(
                 icon: Icon(
                   Icons.star,
+                  color: Colors.red,
                 ),
                 text: 'Favorates',
               ),
