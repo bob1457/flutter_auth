@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/screens/category_details.dart';
 import 'package:flutter_auth/screens/category_screen.dart';
+import 'package:flutter_auth/screens/filter_screen.dart';
 import 'package:flutter_auth/screens/meal_details_screen.dart';
 import 'package:flutter_auth/screens/tab_screen.dart';
 
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => TabsScreen(), //CategoryScreen(),
         CategoryDetails.routeName: (context) => CategoryDetails(),
         MeailDetaisScreen.routeName: (context) => MeailDetaisScreen(),
+        FilterScreen.routeName: (context) => FilterScreen(),
       },
       // onGenerateRoute: (settings) {
       //   print(settings.arguments);

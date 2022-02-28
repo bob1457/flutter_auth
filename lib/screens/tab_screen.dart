@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/screens/category_screen.dart';
 
+import '../wodgets/main_drawer.dart';
 import 'favorites_screen.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -36,6 +36,10 @@ class _TabsScreenState extends State<TabsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_pages[_selectedPageIndex]['title']),
+        // leading: _pages[_selectedPageIndex]['title'] == 'Categories'
+        //     ? Icon(Icons.category)
+        //     : Icon(Icons.star),
+
         // bottom: TabBar(
         //   tabs: [
         //     Tab(
@@ -55,6 +59,7 @@ class _TabsScreenState extends State<TabsScreen> {
         //   ],
         // ),
       ),
+      drawer: MainDrawer(),
       // body: TabBarView(
       //   children: [CategoryScreen(), FavoritesScreen()],
       // ),
