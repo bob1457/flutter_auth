@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/data/category_data.dart';
-import 'package:flutter_auth/models/meal.dart';
 
 class MeailDetaisScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
@@ -70,6 +69,13 @@ class MeailDetaisScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(
+            Icons.delete,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          }),
     );
   }
 
