@@ -6,6 +6,11 @@ class FilterScreen extends StatefulWidget {
   // const FilterScreen({Key? key}) : super(key: key);
   static const routeName = '/filter';
 
+  final Function saveFilters;
+  final Map<String, bool> currentFilters;
+
+  FilterScreen(this.currentFilters, this.saveFilters);
+
   @override
   State<FilterScreen> createState() => _FilterScreenState();
 }
@@ -19,9 +24,20 @@ class _FilterScreenState extends State<FilterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(''),
-      ),
+      appBar: AppBar(title: Text(''), actions: [
+        IconButton(
+          onPressed: () {
+            final selectedFilters = {
+              'gluten': _gluttenFree,
+              'lactose': _lactoseFree,
+              'vegan': _vegan,
+              'vegetarian': _vegetarian,
+            };
+            widget.saveFilters(selectedFilters);
+          },
+          icon: Icon(Icons.save),
+        ),
+      ]),
       body: Column(
         children: [
           Container(

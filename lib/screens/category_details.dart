@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/wodgets/meal_item.dart';
-import '../data/category_data.dart';
+import '../models/meal.dart';
 
 class CategoryDetails extends StatelessWidget {
   // const CategoryDetails({Key? key}) : super(key: key);
@@ -11,6 +11,10 @@ class CategoryDetails extends StatelessWidget {
   // CategoryDetails(this.categoryId, this.categoryTitle);
   static const routeName = "/category-details";
 
+  final List<Meal> availableMeals;
+
+  CategoryDetails(this.availableMeals);
+
   @override
   Widget build(BuildContext context) {
     final routeArgs =
@@ -18,7 +22,7 @@ class CategoryDetails extends StatelessWidget {
     final categoryId = routeArgs['id'];
     final categoryTitle = routeArgs['title'];
 
-    final mealsInCategory = MEALS.where((meal) {
+    final mealsInCategory = availableMeals.where((meal) {
       return meal.categories.contains(categoryId);
     }).toList();
 

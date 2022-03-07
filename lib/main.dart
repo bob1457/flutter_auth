@@ -1,16 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/data/category_data.dart';
 import 'package:flutter_auth/screens/category_details.dart';
 import 'package:flutter_auth/screens/category_screen.dart';
 import 'package:flutter_auth/screens/filter_screen.dart';
 import 'package:flutter_auth/screens/meal_details_screen.dart';
 import 'package:flutter_auth/screens/tab_screen.dart';
 
+import 'models/meal.dart';
+
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+// This widget is the root of your application.
+
+  Map<String, bool> _filters = {
+    'glutten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+
+  List<Meal> _availableMeals = MEALS;
+
+  void _setFilters(Map<String, bool> filterDate) {
+    setState(() {
+      _filters = filterDate;
+      _availableMeals = MEALS.where((meal) {
+        if (_filters['glutten'] != null) {
+          if (!meal.isGlutenFree) {
+            return false;
+          }
+        }
+        if (_filters['vegan'] != null) {
+          if (!meal.isVegan) {
+            return false;
+          }
+        }
+        if (_filters['lactose'] != null) {
+          if (!meal.isLactoseFree) {
+            return false;
+          }
+        }
+        if (_filters['vegetaran'] != null) {
+          if (!meal.isVegetarian) {
+            return false;
+          }
+        }
+
+        return true;
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,9 +85,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => TabsScreen(), //CategoryScreen(),
-        CategoryDetails.routeName: (context) => CategoryDetails(),
+        CategoryDetails.routeName: (context) =>
+            CategoryDetails(_availableMeals),
         MeailDetaisScreen.routeName: (context) => MeailDetaisScreen(),
-        FilterScreen.routeName: (context) => FilterScreen(),
+        FilterScreen.routeName: (context) =>
+            FilterScreen(_filters, _setFilters),
       },
       // onGenerateRoute: (settings) {
       //   print(settings.arguments);
