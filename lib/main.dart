@@ -33,27 +33,18 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _filters = filterDate;
       _availableMeals = MEALS.where((meal) {
-        if (_filters['glutten'] != null) {
-          if (!meal.isGlutenFree) {
-            return false;
-          }
+        if ((_filters['glutten'] ?? false) && !meal.isGlutenFree) {
+          return false;
         }
-        if (_filters['vegan'] != null) {
-          if (!meal.isVegan) {
-            return false;
-          }
+        if ((_filters['vegan'] ?? false) && !meal.isVegan) {
+          return false;
         }
-        if (_filters['lactose'] != null) {
-          if (!meal.isLactoseFree) {
-            return false;
-          }
+        if ((_filters['lactose'] ?? false) && !meal.isLactoseFree) {
+          return false;
         }
-        if (_filters['vegetaran'] != null) {
-          if (!meal.isVegetarian) {
-            return false;
-          }
+        if ((_filters['vegetarian'] ?? false) && !meal.isVegetarian) {
+          return false;
         }
-
         return true;
       }).toList();
     });

@@ -22,6 +22,15 @@ class _FilterScreenState extends State<FilterScreen> {
   bool _lactoseFree = false;
 
   @override
+  initState() {
+    _gluttenFree = widget.currentFilters['glutten'] ?? false;
+    _lactoseFree = widget.currentFilters['lactose'] ?? false;
+    _vegetarian = widget.currentFilters['vegetarian'] ?? false;
+    _vegan = widget.currentFilters['vegan'] ?? false;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(''), actions: [
@@ -70,6 +79,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(
                       () {
                         _vegetarian = newValue;
+                        // print('${newValue}');
                       },
                     );
                   },
