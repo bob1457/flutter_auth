@@ -54,17 +54,16 @@ class _MyAppState extends State<MyApp> {
   void _toggleFavorite(String mealId) {
     final existingIndex =
         _favoriteMeals.indexWhere((meal) => meal.id == mealId);
-
     if (existingIndex >= 0) {
       setState(() {
-        // print('${existingIndex}');
         _favoriteMeals.removeAt(existingIndex);
       });
     } else {
-      // print('${mealId}');
-      _favoriteMeals.add(
-        MEALS.firstWhere((meal) => meal.id == mealId),
-      );
+      setState(() {
+        _favoriteMeals.add(
+          MEALS.firstWhere((meal) => meal.id == mealId),
+        );
+      });
     }
   }
 
