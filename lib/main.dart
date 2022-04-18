@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/login.dart';
+import 'package:flutter_auth/screens/products_overview_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      // home: MyHomePage(
+      //   title: 'We...Buy',
+      // ),
+      // home: Login(),
+      home: ProductOverviewScreen(),
     );
   }
 }
