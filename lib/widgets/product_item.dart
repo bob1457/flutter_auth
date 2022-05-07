@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
@@ -27,7 +24,7 @@ class ProductItem extends StatelessWidget {
       footer: GridTileBar(
           title: Text(
             price.toString(),
-            textAlign: TextAlign.right,
+            textAlign: TextAlign.center,
           ),
           backgroundColor: Colors.black26,
           leading: IconButton(

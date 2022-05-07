@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/login.dart';
 import 'package:flutter_auth/screens/products_overview_screen.dart';
 
 void main() {
@@ -7,6 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final ThemeData theme = ThemeData();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // primarySwatch: Colors.purple,
+        colorScheme: theme.colorScheme.copyWith(
+          primary: Colors.purple,
+          secondary: Colors.deepOrange,
+        ),
+        fontFamily: 'Lato',
       ),
       // home: MyHomePage(
       //   title: 'We...Buy',
