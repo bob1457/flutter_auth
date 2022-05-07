@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/providers/products_state.dart';
 import 'package:flutter_auth/screens/products_overview_screen.dart';
+import 'package:flutter_auth/screens/product_details_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'models/product_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,22 +15,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Auth',
-      theme: ThemeData(
-        // primarySwatch: Colors.purple,
-        colorScheme: theme.colorScheme.copyWith(
-          primary: Colors.purple,
-          secondary: Colors.deepOrange,
+    return ChangeNotifierProvider(
+      create: (context) => ProductsState(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Auth',
+        theme: ThemeData(
+          // primarySwatch: Colors.purple,
+          colorScheme: theme.colorScheme.copyWith(
+            primary: Colors.purple,
+            secondary: Colors.deepOrange,
+          ),
+          fontFamily: 'Lato',
         ),
-        fontFamily: 'Lato',
+        // home: MyHomePage(
+        //   title: 'We...Buy',
+        // ),
+        // home: Login(),
+        home: ProductOverviewScreen(),
+        routes: {
+          ProductDetailsScreen.routeName: (context) => ProductDetailsScreen(),
+        },
       ),
-      // home: MyHomePage(
-      //   title: 'We...Buy',
-      // ),
-      // home: Login(),
-      home: ProductOverviewScreen(),
     );
   }
 }
