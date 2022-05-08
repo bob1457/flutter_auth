@@ -63,9 +63,4 @@ class ProductsState with ChangeNotifier {
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
-
-  // void toggleFavorateStatus() {
-  //   isFavorable = !isFavorable;
-  //   notifyListeners();
-  // }
 }
