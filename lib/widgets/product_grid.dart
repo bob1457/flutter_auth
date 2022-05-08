@@ -5,26 +5,23 @@ import 'package:provider/provider.dart';
 import '../providers/products_state.dart';
 
 class ProductGrid extends StatelessWidget {
-  // const ProductGrid({
-  //   Key? key,
-  //   required this.loadedProducts,
-  // }) : super(key: key);
-
-  // final List<Product> loadedProducts;
-
   @override
   Widget build(BuildContext context) {
-    final productData = Provider.of<ProductsState>(context);
+    final productData = Provider.of<ProductsState>(
+        context); // Listen to the changes to the product state, the list of all products in this case
     final products = productData.items;
 
     return GridView.builder(
       padding: const EdgeInsets.all(10.0),
       itemCount: products.length,
-      itemBuilder: (context, index) => ProductItem(
-        id: products[index].id,
-        title: products[index].title,
-        imageUrl: products[index].imageUrl,
-        price: products[index].price,
+      itemBuilder: (context, index) => ChangeNotifierProvider(
+        create: (BuildContext context) => products[index],
+        child: ProductItem(
+            // id: products[index].id,
+            // title: products[index].title,
+            // imageUrl: products[index].imageUrl,
+            // price: products[index].price,
+            ),
       ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,

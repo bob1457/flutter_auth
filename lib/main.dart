@@ -4,8 +4,6 @@ import 'package:flutter_auth/screens/products_overview_screen.dart';
 import 'package:flutter_auth/screens/product_details_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'models/product_model.dart';
-
 void main() {
   runApp(MyApp());
 }
