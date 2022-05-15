@@ -56,11 +56,31 @@ class ProductsState with ChangeNotifier {
             'https://m.media-amazon.com/images/I/61hvrxlvYNS._AC_UY327_QL65_.jpg'),
   ];
 
+  // var _showFavoratesOnly = false; // this is for global(app wide) state management, if the state is only for a single widget, use statefull widget instead
+
   List<Product> get items {
+    // if (_showFavoratesOnly) {
+    //   return _items.where((item) => item.isFavorable == true).toList();
+    // }
     return [..._items];
+  }
+
+  List<Product> get favoriteItems {
+    return _items.where((item) => item.isFavorable).toList();
   }
 
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
+
+  // showFavoratesOnly() {
+  //   _showFavoratesOnly = true;
+  //   notifyListeners();
+  // }
+
+  // showAll() {
+  //   _showFavoratesOnly = false;
+  //   notifyListeners();
+  // }
+
 }
